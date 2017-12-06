@@ -43,7 +43,7 @@ const static DEFINE_GRAMMAR(wtf) = {
 static void dump_grammar(grammar g)
 {
 	unsigned int i;
-	const char **right;
+	rule right;
 
 	for (i = 0; i < NUM_NONTERMS; i++)
 		if (right = g[i])
