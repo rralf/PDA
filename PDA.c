@@ -51,7 +51,7 @@ static void dump_grammar(const rule *g)
 
 static bool run_pda(const rule *g, const char *word, struct stack s)
 {
-	char top, top_input;
+	char top_stack, top_input;
 	int i;
 	rule r;
 
@@ -63,10 +63,10 @@ static bool run_pda(const rule *g, const char *word, struct stack s)
 	if (s.top == 0)
 		return strlen(word) == 0;
 
-	top = s.content[--s.top]; // POP
+	top_stack = s.content[--s.top]; // POP
 
-	if (isupper(top)) {
-		for_each_production(g, top, r) {
+	if (isupper(top_stack)) {
+		for_each_production(g, top_stack, r) {
 			struct stack tmp = s;
 			const char *rule = *r;
 			const int rule_len = strlen(rule);
@@ -88,7 +88,7 @@ static bool run_pda(const rule *g, const char *word, struct stack s)
 	top_input = word[0];
 	word++;
 
-	if (top_input == top)
+	if (top_input == top_stack)
 		return run_pda(g, word, s);
 
 	return false;
