@@ -18,6 +18,7 @@
 #define NUM_NONTERMS ('Z' - 'A' + 1)
 
 typedef const char ** rule;
+typedef const rule * grammar;
 
 #define DEFINE_GRAMMAR(name) \
 	rule name[NUM_NONTERMS]
@@ -39,7 +40,7 @@ const static DEFINE_GRAMMAR(wtf) = {
 	RULE('B', "bBc", "bc"),
 };
 
-static void dump_grammar(const rule *g)
+static void dump_grammar(grammar g)
 {
 	unsigned int i;
 	const char **right;
@@ -50,7 +51,7 @@ static void dump_grammar(const rule *g)
 				printf("%c -> %s\n", 'A' + i, *right++);
 }
 
-static bool run_pda(const rule *g, const char *word, struct stack s)
+static bool run_pda(grammar g, const char *word, struct stack s)
 {
 	char top_stack, top_input;
 	int i;
