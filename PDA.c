@@ -68,7 +68,7 @@ static void dump_grammar(grammar g)
 		 * the rule "right". The if-condition then checks wether this
 		 * rule is actually present. If we didn't define any rule, g[i]
 		 * would be NULL, and we simply skip it. */
-		if (right = g[i]) {
+		if ((right = g[i])) {
 			/* right points to an array holding all rules of the
 			 * nonterminal symbol.  If this *right is NULL, we have
 			 * reached the end of the list of rules.
