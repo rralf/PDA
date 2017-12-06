@@ -44,9 +44,10 @@ static void dump_grammar(const rule *g)
 	unsigned int i;
 	const char **right;
 
-	for (i = 0; right = g[i]; i++)
-		while (*right)
-			printf("%c -> %s\n", 'A' + i, *right++);
+	for (i = 0; i < NUM_NONTERMS; i++)
+		if (right = g[i])
+			while (*right)
+				printf("%c -> %s\n", 'A' + i, *right++);
 }
 
 static bool run_pda(const rule *g, const char *word, struct stack s)
