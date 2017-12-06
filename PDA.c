@@ -102,8 +102,10 @@ int main(int argc, char **argv)
 		.content = { 'S' },
 	};
 
-	if (argc != 2)
+	if (argc != 2) {
+		fprintf(stderr, "Usage: %s word\n", argv[0]);
 		return -1;
+	}
 
 	dump_grammar(wtf);
 
